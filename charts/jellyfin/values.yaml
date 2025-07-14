@@ -173,6 +173,7 @@ persistence:
   config:
     # -- set to false to use emptyDir
     enabled: true
+    type: "persistentVolumeClaim"
     accessMode: ReadWriteOnce
     size: 5Gi
     # -- Custom annotations to be added to the PVC
@@ -181,6 +182,9 @@ persistence:
     storageClass: ''
     ## -- Use an existing PVC for this mount
     # existingClaim: ''
+    # -- Use to populate fields of nfs volume source
+    # nfsServer: ''
+    # nfsPath: ''
   media:
     # -- set to false to use emptyDir
     enabled: true

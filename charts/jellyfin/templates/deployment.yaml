@@ -125,9 +125,13 @@ spec:
       {{- end }}
       volumes:
         - name: config
-          {{- if .Values.persistence.config.enabled }}
+          {{- if and .Values.persistence.config.enabled (eq .Values.persistence.config.type "persistentVolumeClaim") }}
           persistentVolumeClaim:
             claimName: {{ if .Values.persistence.config.existingClaim }}{{ .Values.persistence.config.existingClaim }}{{- else }}{{ template "jellyfin.fullname" . }}-config{{- end }}
+          {{- else if and .Values.persistence.config.enabled (eq .Values.persistence.config.type "nfs") }}
+          nfs:
+            server: {{ .Values.persistence.config.nfsServer }}
+            path: {{ .Values.persistence.config.nfsPath }}
           {{- else }}
           emptyDir: {}
           {{- end }}
