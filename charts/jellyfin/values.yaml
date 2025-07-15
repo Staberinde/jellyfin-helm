@@ -173,7 +173,7 @@ persistence:
   config:
     # -- set to false to use emptyDir
     enabled: true
-    type: "persistentVolumeClaim"
+    type: "pvc"
     accessMode: ReadWriteOnce
     size: 5Gi
     # -- Custom annotations to be added to the PVC
